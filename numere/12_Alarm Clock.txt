@@ -1,0 +1,6 @@
+import datetime
+alarm_time=datetime.datetime(year=2022,month=4,day=28,hour=22,minute=20)
+if alarm_time.hour==datetime.datetime.now().hour and alarm_time.minute==datetime.datetime.now().minute:
+    print('Alarm')
+else:
+    print('no alarm')

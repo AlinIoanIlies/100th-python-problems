@@ -1,0 +1,17 @@
+def primes(n):
+    for d in range(2,(n//2)+1):
+        if n%d==0:
+            return False
+    return True
+alegere=''
+n=2
+while alegere != 'n':
+    alegere=input('Do you want to continue: y / n ? ').lower()[0]
+    p=False
+    while alegere=='y' and p==False:
+        if primes(n):
+            print(n)
+            n=n+1
+            p=True
+        else:
+            n=n+1

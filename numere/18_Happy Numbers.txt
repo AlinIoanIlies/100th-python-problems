@@ -1,0 +1,21 @@
+def sum_square(n):
+    s=0
+    while n!=0:
+        c=n%10
+        s+=c**2
+        n=n//10
+    return s
+def happy_test(n):
+    while n>=10:
+        n=sum_square(n)
+    if n==1:
+        return True
+    else:
+        return False
+nr=1
+n=0
+while nr<=25:
+    if happy_test(n):
+        print(f'Happy number #{nr} = {n}')
+        nr=nr+1
+    n+=1
