@@ -1,0 +1,127 @@
+import ipywidgets as widgets
+x=widgets.IntProgress(
+    value=9,
+    min=0,
+    max=10,
+    step=1,
+    description='Loading:',
+    bar_style='', # 'success', 'info', 'warning', 'danger' or ''
+    orientation='horizontal'
+)
+x
+def print_progress(minim=0,maxim=100):
+    for i in range(minim,maxim+1):
+        x=widgets.FloatProgress(
+        value=i,
+        min=minim,
+        max=maxim,
+        step=0.1,
+        description='Loading:',
+        bar_style='info',
+        orientation='horizontal')
+        
+    return display(x)
+
+def display_progress(i=0):
+    x=widgets.FloatProgress(
+    value=i,
+    min=0,
+    max=1000,
+    step=0.1,
+    description='Loading:',
+    bar_style='info',
+    orientation='horizontal')
+        
+    return display(x)
+for i in range(1001):
+    display_progress(i)
+
+for i in range(1001):
+    x=widgets.FloatProgress(
+    value=i,
+    min=0,
+    max=1000,
+    step=0.1,
+    description='Loading:',
+    bar_style='info',
+    orientation='horizontal')
+display(x)
+
+x=widgets.FloatProgress(
+value=i,
+min=0,
+max=1000,
+step=0.1,
+description='Loading:',
+bar_style='info',
+orientation='horizontal')
+display(x)
+
+
+from tkinter import *
+from tkinter.ttk import *
+import time
+
+ws = Tk()
+ws.title('PythonGuides')
+ws.geometry('400x250+1000+300')
+
+def step():
+    for i in range(5):
+        ws.update_idletasks()
+        pb1['value'] += 20
+        
+        time.sleep(1)
+
+pb1 = Progressbar(ws, orient=HORIZONTAL, length=100, mode='indeterminate')
+pb1.pack(expand=True)
+
+Button(ws, text='Start', command=step).pack()
+
+ws.mainloop()
+
+from tkinter import *
+from tkinter.ttk import Progressbar
+import time
+
+
+def step():
+    for i in range(5):
+        ws.update_idletasks()
+        pb['value'] += 20
+        time.sleep(1)
+        txt['text']=pb['value'],'%'
+
+ws = Tk()
+ws.title('PythonGuides')
+ws.geometry('200x150')
+ws.config(bg='#345')
+
+
+pb = Progressbar(
+    ws,
+    orient = HORIZONTAL,
+    length = 100,
+    mode = 'determinate'
+    )
+
+pb.place(x=40, y=20)
+
+txt = Label(
+    ws,
+    text = '0%',
+    bg = '#345',
+    fg = '#fff'
+
+)
+
+txt.place(x=150 ,y=20 )
+
+Button(
+    ws,
+    text='Start',
+    command=step
+).place(x=40, y=50)
+
+ws.mainloop()
+
