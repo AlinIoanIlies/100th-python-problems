@@ -1,0 +1,12 @@
+def primes(n):
+    for d in range(2,(n//2)+1):
+        if n%d==0:
+            return False
+    return True
+def prime_factors(n):
+    s=set()
+    for d in range(2,(n//2)+1):
+        if primes(d) and n%d==0:
+            s.add(d)
+    return s
+prime_factors(6685)

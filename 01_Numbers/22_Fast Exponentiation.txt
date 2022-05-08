@@ -1,0 +1,15 @@
+def citire_numar():
+    while True:
+        try:
+            n=int(input('Please provide a number: '))
+            break
+        except:
+            continue
+    return n
+def power():
+    a=citire_numar()
+    b=citire_numar()
+    p=1
+    for i in range(b):
+        p*=a
+    return p

@@ -1,0 +1,166 @@
+def unitati(n):
+    n=str(n)
+    if n=='1':
+        s='unu'
+    elif n=='2':
+        s='doi'
+    elif n=='3':
+        s='trei'
+    elif n=='4':
+        s='patru'
+    elif n=='5':
+        s='cinci'
+    elif n=='6':
+        s='șase'
+    elif n=='7':
+        s='șapte'
+    elif n=='8':
+        s='opt'
+    elif n=='9':
+        s='nouă'
+    return s
+def intre_11_19(n):
+    n=str(n)
+    if n=='11':
+        s='unsprezece'
+    elif n=='12':
+        s='doisprezece'
+    elif n=='13':
+        s='treisprezece'
+    elif n=='14':
+        s='patrusprezece'
+    elif n=='15':
+        s='cincisprezece'
+    elif n=='16':
+        s='șaisprezece'
+    elif n=='17':
+        s='șaptesprezece'
+    elif n=='18':
+        s='optsprezece'
+    elif n=='19':
+        s='nouăsprezece'
+    return s
+def zeci(n):
+    n=str(n)
+    if n=='10':
+        s='zece'
+    elif n=='20':
+        s='douăzeci'
+    elif n=='30':
+        s='treizeci'
+    elif n=='40':
+        s='patruzeci'
+    elif n=='50':
+        s='cincizeci'
+    elif n=='60':
+        s='șaizeci'
+    elif n=='70':
+        s='șaptezeci'
+    elif n=='80':
+        s='optzeci'
+    elif n=='90':
+        s='nouăzeci'
+    return s
+def intre_21_99(n):
+    cifra_zeci=(n//10)*10
+    ultima_cifra=n%10
+    return zeci(cifra_zeci) + ' și ' + unitati(ultima_cifra)
+def intre_1_99(n):
+    if n>=1 and n<=9:
+        return unitati(n)
+    elif n>=11 and n<=19:
+        return intre_11_19(n)
+    elif n in list(range(10,100,10)):
+        return zeci(n)
+    elif n>=20 and n <=99 and n not in list(range(10,100,10)):
+        return intre_21_99(n)
+def sute(n):
+    n=str(n)
+    first=int(n[0])
+    if n=='100':
+        s='o sută'
+    elif n=='200':
+        s='două sute'
+    elif first!=1 or first!=2:
+        s = unitati(first) + ' sute'
+    return s
+def intre_1_999(n):
+    if n<=99:
+        return intre_1_99(n)
+    elif n in list(range(100,1000,100)):
+        return sute(n)
+    elif n>=100 and n <=999 and n not in list(range(100,1000,100)):
+        return sute((n//100)*100) + ' ' + intre_1_99(n%100)
+def mii(n):
+    if n == 1000:
+        s='o mie'
+    elif n == 2000 :
+        s='două mii'
+    elif n in list(range(3000,1000000,1000)):
+        s = intre_1_999(n//1000) + ' mii'
+    return s 
+def intre_1_999999(n):
+    if n<=999:
+        return intre_1_999(n)
+    elif n in list(range(1000,1000000,1000)):
+        return mii(n)
+    elif n>=1000 and n <=999999 and n not in list(range(1000,1000000,1000)):
+        return mii((n//1000)*1000) +' ' + intre_1_999(n%1000)
+def milioane(n):
+    if n == 1000000:
+        return 'un milion'
+    elif n== 2000000:
+        return 'două milioane'
+    elif (n//(10**6)) in range(1,1000):
+        return intre_1_999(n//(10**6)) + ' milioane'
+def intre_1_miliard(n):
+    if n <= 999999:
+        return intre_1_999999(n)
+    elif n in range(10**6,1000*10**6,10**6):
+        return milioane(n)
+    elif n>=10**6 and n <10**9 and n not in range(10**6,1000*10**6,10**6):
+        return milioane((n//1000000)*1000000) +' ' + intre_1_999999(n%1000000)
+def miliarde(n):
+    if n == 10**9:
+        return 'un miliard'
+    elif n== 2*10**9:
+        return 'două miliarde'
+    elif (n//(10**9)) in range(1,10**9):
+        return intre_1_miliard(n//(10**9)) + ' miliarde'    
+
+def doar_natural(n):
+    if n <10**9:
+        return intre_1_miliard(n)
+    elif n in range(10**9,10**15,10**9):
+        return miliarde(n)
+    elif n>=10**9 and n <10**15 and n not in range(10**9,10**15,10**9):
+        aux1=10**9
+        return miliarde((n//aux1)*aux1) +' ' + intre_1_miliard(n%aux1)
+    else:
+        return 'numar prea mare'
+
+def doar_intreg(n):
+    if n==0:
+        return 'zero'
+    elif n>0:
+        return doar_natural(n)
+    else:
+        return 'minus ' + doar_natural(-n)    
+
+def numere_reale(n):
+    if type(n) == int:
+        return doar_intreg(n)
+    elif type(n) == float:
+        if n>=0:
+            s=''
+            m=n
+        elif n<0:
+            s='minus '
+            m=-n
+        lista=str(m).split('.')
+        parte_intreaga=int(lista[0])
+        parte_imaginara=lista[1]
+        s+=doar_intreg(parte_intreaga) + ' virgula'
+        for i in parte_imaginara:
+            s=s+' '+unitati(int(i))
+        return s

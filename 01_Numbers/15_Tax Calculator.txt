@@ -1,0 +1,3 @@
+def tax_calculator(cost,tax_rate=19):
+    tax_rate/=100
+    return (tax_rate*cost,cost*(1+tax_rate))
