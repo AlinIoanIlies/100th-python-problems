@@ -1,0 +1,12 @@
+def create_graph(lista):
+    s={}
+    for i,j in lista:
+        s[i]=[]
+        s[j]=[]
+    for i,j in lista:
+        if j not in s[i]:
+            s[i].append(j)
+        if i not in s[j]:
+            s[j].append(i)
+    return s
+create_graph([[2,1],[1,4],[2,3],[3,4],[1,2]])
