@@ -1,0 +1,14 @@
+import socket
+hostname = socket.gethostname()
+local_ip = socket.gethostbyname(hostname)
+print(local_ip)
+
+import requests
+response = requests.get("https://geolocation-db.com/json/39.110.142.79&position=true").json()
+response
+
+ip_adres='179.97.15.120'
+adresa="https://geolocation-db.com/json/"+ip_adres+"&position=true"
+response2 = requests.get(adresa).json()
+response2
+
