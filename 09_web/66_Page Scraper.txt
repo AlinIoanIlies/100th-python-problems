@@ -1,0 +1,17 @@
+import requests
+import bs4
+
+def page_scraper(page,element='image'):
+    res = requests.get(page)
+    soup = bs4.BeautifulSoup(res.text,'lxml')
+    if element.lower()=='image':
+        aux1="img"
+    elif element.lower()=='link':
+        aux1="a"
+    rezultat=set()
+    for item in soup.select(aux1):
+        rezultat.add(item)
+    rezultat=list(rezultat)
+    print(rezultat)
+    return rezultat
+
