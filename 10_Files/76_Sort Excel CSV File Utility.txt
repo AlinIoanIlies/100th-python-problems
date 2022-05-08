@@ -1,0 +1,11 @@
+import pandas as pd
+def csv_sort(fisier,sort=[],tip='ascending'):
+    df=pd.read_csv(fisier)
+    if tip =='ascending':
+        df.sort_values(sort)
+    elif tip =='descending':
+        df.sort_values(sort,ascending=False)
+    df.to_csv('output.CSV',index=False)
+    return df
+
+
