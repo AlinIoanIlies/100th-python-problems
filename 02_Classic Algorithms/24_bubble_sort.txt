@@ -1,0 +1,17 @@
+def bubble_sort(lista):
+    n=len(lista)
+    ordonat=False
+    while ordonat==False:
+        nr=0
+        for i in range(n-1):
+            if lista[i]>lista[i+1]:
+                aux=lista[i]
+                lista[i]=lista[i+1]
+                lista[i+1]=aux
+                nr+=1
+        if nr ==0:
+            ordonat=True 
+        else:
+            ordonat=False
+    return lista
+bubble_sort([10,9,-2,5,1])

@@ -1,0 +1,41 @@
+def distance(name1,point1,name2,point2):
+    name=name1+name2
+    name="".join(sorted(name))
+    s=0
+    for i in range(len(point1)):
+        s+=(point1[i]-point2[i])**2
+    s=s**0.5
+    return [name,s]
+distance('B',[1,2],'A',[1,3])[0]
+def bubble_sort_distance(lista):
+    n=len(lista)
+    ordonat=False
+    while ordonat==False:
+        nr=0
+        for i in range(n-1):
+            if lista[i][1]>lista[i+1][1]:
+                aux=lista[i]
+                lista[i]=lista[i+1]
+                lista[i+1]=aux
+                nr+=1
+        if nr ==0:
+            ordonat=True 
+        else:
+            ordonat=False
+    return lista
+
+def caluclate_distance(lista):
+    t=[]
+    l_name=[]
+    for i in range(len(lista)):
+        for j in range(len(lista)):
+            if i!=j:
+                p1_name,p1_data=lista[i]
+                p2_name,p2_data=lista[j]
+                name="".join(sorted(p1_name+p2_name))
+                if name not in l_name:
+                    t.append(distance(p1_name,p1_data,p2_name,p2_data))
+                    l_name.append(name)
+    return bubble_sort_distance(t)
+
+caluclate_distance([['A',[1,2,10]],['B',[1,3,20]],['C',[4,3,21]]])

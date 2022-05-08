@@ -1,0 +1,13 @@
+def sieve(n):
+    lista=list(range(2,n+1))
+    t=[]
+    while lista !=[]:
+        p=lista[0]
+        lista.remove(p)
+        for i in lista:
+            if i%p==0:
+                lista.remove(i)
+        t.append(p)
+    return t
+
+sieve(10**3)
