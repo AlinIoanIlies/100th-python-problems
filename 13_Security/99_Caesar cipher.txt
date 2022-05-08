@@ -1,0 +1,49 @@
+import string
+alphabet=string.ascii_lowercase
+def criptare_ceasar(text,n=3):
+    criptare={}
+    alphabet=string.ascii_lowercase
+    for j in range(n):
+        criptare[alphabet[j]]=alphabet[len(alphabet)-n+j]
+    for i in range(len(alphabet)-n):
+        criptare[alphabet[i+n]]=alphabet[i]
+    result=''
+    for elem in text:
+        if elem not in alphabet:
+            result+=elem
+        elif elem in alphabet.lower():
+            result+=criptare[elem]
+        elif elem in alphabet.upper():
+            result+=criptare[elem.lower()].upper()
+    return result
+
+def decriptare_ceasar(text,n=3):
+    criptare={}
+    alphabet=string.ascii_lowercase
+    mare=alphabet.upper()
+    for j in range(n):
+        criptare[alphabet[j]]=alphabet[len(alphabet)-n+j]
+    for i in range(len(alphabet)-n):
+        criptare[alphabet[i+n]]=alphabet[i]
+    result=''
+    decriptare={}
+    for i in criptare:
+        decriptare[criptare[i]]=i
+    for elem in text:
+        if elem not in alphabet:
+            result+=elem
+        elif elem in alphabet.lower():
+            result+=decriptare[elem]
+        elif elem in mare:
+            elem=elem.lower()
+            result+=decriptare[elem]    
+    return result
+
+
+
+
+
+
+
+
+
