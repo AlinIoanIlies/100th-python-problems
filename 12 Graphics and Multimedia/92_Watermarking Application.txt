@@ -1,0 +1,13 @@
+from PIL import Image
+imagine=Image.open('file_locations\\test.jpg')
+icon=Image.open('file_locations\\icon.png')
+icon.putalpha(100)
+imagine.paste(im=icon,box=(0,0),mask=icon)
+
+def icon_watermak(imagine='file_locations\\test.jpg',icon='file_locations\\icon.png'):
+    img=Image.open(imagine)
+    ic=Image.open(icon)
+    ic.putalpha(100)
+    img.paste(im=ic,box=(0,0),mask=ic)
+    return img
+

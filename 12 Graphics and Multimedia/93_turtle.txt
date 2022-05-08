@@ -1,0 +1,40 @@
+from turtle import *
+import turtle
+def comenzi():
+    lista_optiuni=['forward','left','right','lift pen', 'drop pen','exit']
+    com=''
+    while com not in lista_optiuni:
+        com=input('what do you want to do? (exit) ')
+    return com
+
+def select_number(n_min=0,n_max=20):
+    list_choice=[]
+    for i in range(n_min,n_max+1):
+        list_choice.append(str(i))
+    choice=''
+    while choice not in list_choice:
+        choice=input(f'please provide a number between {n_min} and {n_max} ')
+    return int(choice)
+
+com=comenzi()
+turtle.begin_fill()
+while com !='exit':
+    turtle.screensize(canvwidth=20, canvheight=20)
+    
+    if com=='forward':
+        turtle.forward(select_number())
+    elif com=='left':
+        turtle.left(select_number())
+    elif com=='right':
+        turtle.right(select_number())
+    elif com=='lift pen':
+        turtle.penup()
+    elif com=='drop pen':
+        turtle.pendown()
+    com=comenzi()
+turtle.end_fill()
+turtle.done()
+
+
+
+
