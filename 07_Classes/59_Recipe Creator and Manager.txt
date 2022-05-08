@@ -1,0 +1,33 @@
+class Recipe():
+    def __init__(self,tip,name,description,ingredients):
+        self.tip=self.tip
+        self.name=name
+        self.description=description
+        self.ingredients=ingredients
+    def __str__(self):
+        return self.tip+' - '+self.name
+
+def organizare_tip(lista_ret,categ):
+    t=[]
+    for i in lista_ret:
+        if i.tip == categ:
+            t.append(i)
+    return t
+
+def organizare_ingrediente(lista_ret,ingredient):
+    t=[]
+    for i in lista_ret:
+        if ingredient in i.ingredients.keys():
+            t.append(i)
+    return t
+
+
+
+
+
+
+
+
+
+
+

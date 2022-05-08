@@ -1,0 +1,31 @@
+class Patient():
+    def __init__(self,name,disease,id_apoin):
+        self.name=name
+        self.disease=disease
+        self.id_apoin=id_apoin
+    def __str__(self):
+        return self.name+' has the disease '+self.disease+'\n'
+
+class Doctor():
+    def __init__(self,name):
+        self.name=name
+        self.all_patients=[]
+    def adaug_patients(self,name,disease):
+        n=len(self.all_patients)
+        if n<=15:
+            self.all_patients.append(Patient(name,disease,n))
+    def __str__(self):
+        t='Doctorul '+self.name+' are urmatorii pacienti programati\n'
+        for i in self.all_patients:
+            t+=i.__str__()
+        return t
+doc1=Doctor('Pop Popescu')
+
+for i in range(16):
+    doc1.adaug_patients('alin','control')
+
+doc1.adaug_patients('alin','control')
+
+
+
+

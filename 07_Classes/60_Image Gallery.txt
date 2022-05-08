@@ -1,0 +1,32 @@
+from PIL import Image
+import matplotlib.pyplot as plt
+
+pen=Image.open('file_locations\\test.jpg')
+
+class Imagine():
+    def __init__(self,name,director='file_locations'):
+        self.name=name
+        self.director=director
+        t=self.director+'\\'+self.name
+        self.view=Image.open(t)
+
+x=Imagine('test.jpg')
+#x.view
+
+
+class Galerie():
+    def __init__(self):
+        self.lista_img=[]
+    def add_img(self,name):
+        self.lista_img.append(Imagine(name))
+    def afisare(self):
+        afis_10=self.lista_img[0:9]
+        fig,ax = plt.subplots(2,5)
+        for i in range(10):
+            ax[i%2][i//2].imshow(afis_10[i].view)
+        fig.show()
+g=Galerie()
+g.add_img('test.jpg')
+g.afisare()
+
+

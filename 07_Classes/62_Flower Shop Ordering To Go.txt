@@ -1,0 +1,47 @@
+class Flower():
+    def __init__(self,name,price):
+        self.name=name
+        self.price=price
+    def __str__(self):
+        return self.name
+
+class Bouquet():
+    def __init__(self):
+        self.all_flowers=[]
+        self.value=0
+    def add_flowers(self,name,price):
+        aux=Flower(name,price)
+        self.all_flowers.append(aux)
+        self.value+=aux.price
+    def __str__(self):
+        t=f'pretul total este {self.value}\n Florile\n'
+        for i in self.all_flowers:
+            t+=i.__str__()+'\t'
+        return t
+
+depozit={'trandafir':[20,50],'lalea':[15,40],'crini':[10,60]}
+def citire_n(n):
+    lista_optiuni=[]
+    for i in range(0,n+1):
+        lista_optiuni.append(str(i))
+    choice=''
+    while choice not in lista_optiuni:
+        choice=input('How many flowers do you want? ')
+    return int(choice)
+
+def creare_buchet(depozit):
+    buchet=Bouquet()
+    for i_floare in depozit:
+        print(i_floare)
+        tip=i_floare
+        nr_elem_disp=depozit[i_floare][0]
+        n_ales=citire_n(nr_elem_disp)
+        depozit[i_floare][0]=nr_elem_disp-n_ales
+        pret=depozit[i_floare][1]
+        for j in range(n_ales):
+            buchet.add_flowers(i_floare,pret)
+    return buchet
+
+
+
+

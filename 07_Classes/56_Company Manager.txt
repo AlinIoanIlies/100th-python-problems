@@ -1,0 +1,85 @@
+class Employee():
+    def __init__(self,name,ocupation,salary,worked_hours=40):
+        self.name=name
+        self.ocupation=ocupation
+        if type(salary)==int or type(salary)==float:
+            self.salary=salary
+        if type(worked_hours)==int:
+            self.worked_hours=worked_hours
+    def __str__(self):
+        return f'Employee: {self.name}, has the ocupation {self.ocupation}. it worked {self.worked_hours} hours\n'
+class HourlyEmployee(Employee):
+    def __init__(self,name,ocupation,salary,n=20):
+        salary=salary*n/40
+        Employee.__init__(self,name,ocupation,salary,n)
+a=HourlyEmployee('Alin Ilies','engineer',4000)
+print(a)
+class SalariedEmployee(Employee):
+    def __init__(self,name,ocupation,salary,n=40):
+        Employee.__init__(self,name,ocupation,salary,n)
+
+class Manager(SalariedEmployee):
+    def __init__(self,name,salary,nr_resp=1):
+        self.nr_resp=nr_resp
+        salary=salary*(1+5*self.nr_resp)/self.nr_resp
+        ocupation='Manager'
+        SalariedEmployee.__init__(self,name,ocupation,salary)
+class Executive(SalariedEmployee):
+    def __init__(self,name,salary):
+        ocupation='Executive manager'
+        SalariedEmployee.__init__(self,name,ocupation,salary)
+
+import math
+class Company():
+    def __init__(self,def_salary=5000):
+        self.def_salary=def_salary
+        self.all_empl=[]
+        self.list_name=[]
+        for i in self.all_empl:
+            self.list_name.append(i.name)
+    def angajare_internship(self,name,ocupation):
+        if ocupation not in ['Executive manager','Manager'] and name not in self.list_name:
+            self.all_empl.append(HourlyEmployee(name,ocupation,self.def_salary))
+        else:
+            print('Sorry. it could not be done')
+    def angajare_full(self,name,ocupation):
+        if ocupation not in ['Executive manager','Manager'] and name not in self.list_name:
+            self.all_empl.append(SalariedEmployee(name,ocupation,self.def_salary))
+        else:
+            print('Sorry. it could not be done')
+    def concediere(self,name):
+        for i in self.all_empl:
+            if i.name==name:
+                self.all_empl.remove(i)
+    def promovare_manager(self,name):
+        nr_man=0
+        for i in self.all_empl:
+            if i.ocupation=='Manager':
+                nr_man+=1
+        for i in self.all_empl:
+            if i.name==name:
+                self.all_empl.remove(i)
+                if nr_man ==0:
+                    man_anga=1
+                else:
+                    man_anga=math.round((len(self.all_empl))/man_anga)
+                self.all_empl.append(Manager(name,self.def_salary,man_anga))
+    def promovare_executiv(self,name):
+        for i in self.all_empl:
+            if i.name==name:
+                self.all_empl.remove(i)
+                self.all_empl.append(Executive(name,self.def_salary*2))
+    def __str__(self):
+        t='The company employees\n'
+        for i in self.all_empl:
+            t+=i.__str__()+'\n'
+        return t
+
+elsyca=Company()
+elsyca.angajare_full('Alin Ilies','Engineer')
+elsyca.angajare_internship('Mirabela Foran','chemistry')
+elsyca.angajare_full('Marius Purcar','Engineer')
+elsyca.angajare_full('Paulo Viera','Engineer')
+elsyca.promovare_executiv('Marius Purcar')
+elsyca.promovare_manager('Paulo Viera')
+

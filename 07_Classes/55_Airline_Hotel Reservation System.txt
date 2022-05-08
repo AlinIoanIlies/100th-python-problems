@@ -1,0 +1,100 @@
+class AirlineSeat():
+    def __init__(self,name,price,clasa,ocupat):
+        self.name=name
+        self.price=price
+        self.clasa=clasa
+        if ocupat in [0,1]:
+            self.ocupat=ocupat
+        else:
+            self.ocupat=0
+    def __str__(self):
+        return f'Seat:{self.name}, {self.clasa}. State {self.ocupat} , Price: {self.price}\n'
+
+class Airline():
+    def __init__(self,n=[20,60,60],price=100):
+        self.n=n
+        self.price=price
+        self.all_seats=[]
+        loc=0
+        for n_clase in range(1,len(n)+1):
+            for i in range(1,n[n_clase-1]+1):
+                loc+=1
+                a1='Clasa '+str(n_clase)
+                a2=(len(n)-n_clase)*(0.1)*self.price+self.price
+                s=AirlineSeat(loc,a2,a1,0)
+                self.all_seats.append(s)
+    def ocupare(self,nr_loc):
+        for i in range(len(self.all_seats)):
+            if self.all_seats[i].name==nr_loc:
+                self.all_seats[i].ocupat=1
+        return 'done'
+    def modific_pret_clase(self,pret=[100,90,80]):
+        for i in range(len(self.all_seats)):
+            for n_price in range(1,len(pret)+1):
+                x=int(self.all_seats[i].clasa.replace('Clasa ',''))
+                if x==n_price:
+                    self.all_seats[i].price=pret[n_price-1]
+        return 'done'
+    def __str__(self):
+        t='Overview:\n'
+        for i in range(len(self.all_seats)):
+            t+=self.all_seats[i].__str__()
+        return t
+x=Airline()
+x.modific_pret_clase([200,150,50])
+print(x)
+
+
+
+class HotelRoom():
+    def __init__(self,name,num_beds=1,ocupat=0,rezervat=0,days=0,price=0):
+        self.name=name
+        self.num_beds=num_beds
+        self.ocupat=ocupat
+        self.rezervat=rezervat
+        self.days=days
+        self.price=price
+    def room_value(self):
+        return self.price*self.num_beds*days
+    def __str__(self):
+        return f'Room: {self.name} has {self.num_beds} beds; price: {self.price} per room. State: occupied {self.ocupat}, Reserved {self.rezervat}, days {self.days}\n'
+x=HotelRoom(1)
+print(x)
+import random
+random.randint(1,6)
+class Hotel():
+    def __init__(self,n,price=100):
+        self.n=n
+        self.price=price
+        self.all_rooms=[]
+        for i in range(1,self.n+1):
+            b1=random.randint(1,6)
+            k=1
+            if b1>=3:
+                k=1.2
+            elif b1>=4:
+                k=1.4
+            self.all_rooms.append(HotelRoom(i,b1,0,0,0,price*b1*k))
+    def rezervare(self,camera,zile):
+        if camera>=1 and camera<=self.n and self.all_rooms[camera-1].ocupat==0 and self.all_rooms[camera-1].rezervat==0:
+            self.all_rooms[camera-1].rezervat=1
+            self.all_rooms[camera-1].days=zile
+            x='done'
+        else:
+            x='sorry. Choose another room'
+        return x
+    def ocupare(self,camera,zile):
+        if camera>=1 and camera<=self.n and self.all_rooms[camera-1].ocupat==0 and self.all_rooms[camera-1].rezervat==0:
+            self.all_rooms[camera-1].ocupat=1
+            self.all_rooms[camera-1].days=zile
+            x='done'
+        else:
+            x='sorry. Choose another room'
+        return x
+    def __str__(self):
+        t='Lista camere\n'
+        for camera in self.all_rooms:
+            t+=camera.__str__()
+        return t
+alex=Hotel(100,150)
+alex.rezervare(70,4)

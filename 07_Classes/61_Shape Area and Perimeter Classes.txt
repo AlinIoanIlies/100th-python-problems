@@ -1,0 +1,69 @@
+import math
+math.pi
+
+class Shape():
+    def __init__(self,name,dimensions=[]):
+        self.name=name
+        if type(dimensions)==list:
+            self.dimensions=dimensions
+    def perimiter(self):
+        return sum(self.dimensions)
+    def area(self):
+        return self.dimensions[0]*self.dimensions[1]
+    def __str__(self):
+        return self.name
+class Triangle(Shape):
+    def __init__(self,dimensions):
+        if len(dimensions)==3:
+            Shape.__init__(self,'triangle',dimensions)
+    def perimiter(self):
+        return sum(self.dimensions)
+    def area(self):
+        p=sum(self.dimensions)/2
+        aux=p*(p-self.dimensions[0])*(p-self.dimensions[1])*(p-self.dimensions[2])
+        return aux**0.5
+class Rectangle(Shape):
+    def __init__(self,dimensions):
+        if len(dimensions)==2:
+            Shape.__init__(self,'rectangle',dimensions)
+    def perimiter(self):
+        return 2*sum(self.dimensions)
+    def area(self):
+        return self.dimensions[0]*self.dimensions[1]
+class Circle(Shape):
+    def __init__(self,dimensions):
+        if len(dimensions)==1:
+            Shape.__init__(self,'circle',dimensions)
+    def perimiter(self):
+        return 2*math.pi*self.dimensions[0]
+    def area(self):
+        return math.pi*self.dimensions[0]**2
+class Diamond(Shape):
+    def __init__(self,dimensions):
+        if len(dimensions)==2:
+            Shape.__init__(self,'diamond',dimensions)
+    def perimiter(self):
+        return 2*(self.dimensions[0]**2+self.dimensions[1]**2)**0.5
+    def area(self):
+        return self.dimensions[0]*self.dimensions[1]/2
+list_shape=[['circle',[5]],['diamond',[6,8]],['triangle',[3,4,5]],['rectangle',[20,10]],['rectangle',[10,10]]]
+l_shape=[]
+list_area=[]
+list_perimiter=[]
+t=Triangle([3,4,5])
+t.name
+
+for i in range(len(list_shape)):
+    if list_shape[i][0]=='circle':
+        l_shape.append(Circle(list_shape[i][1]))
+    elif list_shape[i][0]=='triangle':
+        l_shape.append(Triangle(list_shape[i][1]))
+    elif list_shape[i][0]=='rectangle':
+        l_shape.append(Rectangle(list_shape[i][1]))
+    elif list_shape[i][0]=='diamond':
+        l_shape.append(Diamond(list_shape[i][1]))
+for j in range(len(l_shape)):
+    list_area.append([l_shape[j].name,l_shape[j].area()])
+    list_perimiter.append([l_shape[j].name,l_shape[j].perimiter()])
+print(list_area)
+print(list_perimiter)

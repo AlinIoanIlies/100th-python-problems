@@ -1,0 +1,44 @@
+import math
+class Produs():
+    def __init__(self,name,price,idi,quantity):
+        self.name=name
+        if type(price)==float or type(price)==int:
+            self.price=price
+        else:
+            self.price=0
+        self.idi=idi
+        if type(quantity)==int:
+            self.quantity=quantity
+        elif type(quantity)==float:
+            self.quantity=math.floor(quantity)
+        else:
+            self.quantity=0
+    def __str__(self):
+        return f'Product: {self.name}, {self.idi}; Price: {self.price}, Quantity: {self.quantity}\n'
+ex=Produs('laptop',price=4000,idi='HP-VICTUS',quantity=10)
+ex.price
+class Inventory():
+    def __init__(self):
+        self.all_products=[]
+    def add_element(self,name,price,idi,quantity):
+        #aux=Produs.__init__(self,name,price,idi,quantity)
+        aux=Produs(name,price,idi,quantity)
+        self.all_products.append(aux)
+    def __str__(self):
+        n=len(self.all_products)
+        t='Overview:\n'
+        for i in range(n):
+            x=self.all_products[i]
+            t+=x.__str__()
+        return t
+    def total_value(self):
+        value=0
+        n=len(self.all_products)
+        for i in range(n):
+            x=self.all_products[i]
+            value+=x.price*x.quantity
+        return value
+inv=Inventory()
+inv.add_element('laptop',price=4000,idi='HP-VICTUS',quantity=10)
+print(inv.total_value())
+print(inv)

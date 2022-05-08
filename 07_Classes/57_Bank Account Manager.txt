@@ -1,0 +1,28 @@
+class Account():
+    def __init__(self,name,iban,value):
+        self.name=name
+        self.iban=iban
+        self.value=value
+    def adaug_bani(self,name,bani):
+        if bani >=0 and name==self.name:
+            self.value+=bani
+    def retras_bani(self,name,bani):
+        self.value-=bani
+    def __str__(self):
+        return f'{self.name} are in cont {self.value} $\n'
+
+class CheckingAccount(Account):
+    def __init__(self,name,iban,value):
+        Account.__init__(self,name,iban,value)
+class SavingsAccount(Account):
+    def __init__(self,name,iban,value):
+        Account.__init__(self,name,iban,value)
+    def adaug_bani(self,name,bani=0.02):
+        self.value=self.value*(1+bani)
+    def retras_bani(self,name,bani=0):
+        self.value=bani
+class BusinessAccount(Account):
+    def __init__(self,name,iban,value):
+        Account.__init__(self,name,iban,value)
+cont_nou=Account('Alin','wadADq',5000)
+cont_nou.adaug_bani('Alin',4000)
