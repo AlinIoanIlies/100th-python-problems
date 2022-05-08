@@ -1,0 +1,22 @@
+import re
+import os
+
+for folder,sub_folder,files in os.walk(os.getcwd()+"\\file_locations"):
+        for nume_fisier in files:
+            print(nume_fisier)
+
+
+def citire_fisier(text):
+    s={}
+    base=os.getcwd()+"\\file_locations"
+    for folder,sub_folder,files in os.walk(base):
+        for nume_fisier in files:
+            with open(base+"\\"+nume_fisier,'r') as f:
+                s[nume_fisier]=f.read()
+    gasit={}
+    text=text.lower()
+    for i in s:
+        gasit[i]=re.findall(r'{}'.format(text),s[i])
+    return gasit
+
+citire_fisier('e')
