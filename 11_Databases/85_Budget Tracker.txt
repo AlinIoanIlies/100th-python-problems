@@ -1,0 +1,42 @@
+import datetime
+def select_number(n_min=0,n_max=12):
+    list_choice=[]
+    for i in range(n_min,n_max+1):
+        list_choice.append(str(i))
+    choice=''
+    while choice not in list_choice:
+        choice=input(f'please provide a number between {n_min} and {n_max} ')
+    return int(choice)
+def set_date_2():
+    print('please select the year for the event ')
+    event_an=select_number(n_min=timp_actual.year,n_max=2100)
+    print('please select the month for the event ')
+    event_luna=select_number(n_min=1,n_max=12)
+    print('please select the day ')
+    event_zi=select_number(n_min=1,n_max=31)
+    return datetime.datetime(event_an,event_luna,event_zi)
+
+timp_actual = datetime.datetime.now()
+test2=datetime.datetime(datetime.datetime.now().year,datetime.datetime.now().month+1,datetime.datetime.now().day)
+datetime.datetime(datetime.datetime.now().year,datetime.datetime.now().month+1,datetime.datetime.now().day)
+
+class buget_utilizator():
+    def __init__(self,future_date=datetime.datetime(datetime.datetime.now().year,datetime.datetime.now().month+1,datetime.datetime.now().day)):
+        self.future_date=future_date
+        self.diferenta=future_date-datetime.datetime.now()
+        self.numar_luni=self.diferenta.days//30
+        self.income=0
+    def income_recurent(self,venit=0,recurent=0):
+        self.income+=(abs(venit)-abs(recurent))*self.numar_luni
+        return self.income
+    def cheltuieli(self,spending=0):
+        self.income+=(-abs(spending))
+        return self.income
+alin=buget_utilizator()
+alin.income_recurent(4500,400)
+alin.cheltuieli(1500)
+
+alin.numar_luni=60
+
+
+

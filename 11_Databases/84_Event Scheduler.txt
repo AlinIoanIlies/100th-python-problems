@@ -1,0 +1,40 @@
+import datetime
+def select_number(n_min=0,n_max=12):
+    list_choice=[]
+    for i in range(n_min,n_max+1):
+        list_choice.append(str(i))
+    choice=''
+    while choice not in list_choice:
+        choice=input(f'please provide a number between {n_min} and {n_max} ')
+    return int(choice)
+select_number()
+
+aux1 = datetime.datetime.now()
+
+aux1.year
+def set_date():
+    timp_actual = datetime.datetime.now()
+    print('please select the year for the event ')
+    event_an=select_number(n_min=timp_actual.year,n_max=2100)
+    print('please select the month for the event ')
+    event_luna=select_number(n_min=1,n_max=12)
+    print('please select the day ')
+    event_zi=select_number(n_min=1,n_max=31)
+    print('please select the hour ')
+    event_ora=select_number(n_min=0,n_max=23)
+    print('please select the minute ')
+    event_minut=select_number(n_min=0,n_max=60)
+    return datetime.datetime(event_an,event_luna,event_zi,event_ora,event_minut)
+aux2 = set_date()
+dif_timp=aux2-aux1
+dif_timp.days
+
+def setare_event():
+    print('please provide the name of the event')
+    event=input('Name of the event ')
+    timp_event=set_date()
+    dif_timp=timp_event-datetime.datetime.now()
+    if dif_timp.days ==0 and dif_timp.seconds ==0:
+        return 'event are loc acum'
+    else:
+        return 'event in '+ str(dif_timp.days) +' days and ' + str(dif_timp.seconds)+ ' seconds'

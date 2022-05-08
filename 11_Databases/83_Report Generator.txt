@@ -1,0 +1,9 @@
+import pandas as pd
+from numpy.random import randn
+df=pd.DataFrame(randn(5,4),['a','b','c','d','e'],['w','x','y','z'])
+
+def export_table(dataframe,coloane=[]):
+    df_aux=dataframe[coloane]
+    df_aux.to_csv('output.CSV',index=False)
+    return df_aux
+export_table(df,coloane=['x','y','z'])

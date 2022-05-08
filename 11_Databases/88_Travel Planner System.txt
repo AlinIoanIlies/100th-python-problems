@@ -1,0 +1,35 @@
+x={'a':{'destination':'','hotel':'','Points of interest':[''],'budget':0,'schedule':0}}
+for i in x.keys():
+    print(x[i]['budget'])
+def select_budget():
+    while True:
+        try:
+            choice=int(input(f'please provide a number '))
+            break
+        except:
+            continue
+    return abs(choice)
+
+def creare_planificare(n=1):
+    export_dict={}
+    for i in range(1,n+1):
+        place=input('What is the destination? ')
+        hotel=input('What is the hotel ')
+        print('How many points of interest? ')
+        num_interest=select_budget()
+        lista_interest=[]
+        for j in range(num_interest):
+            lista_interest.append(input('Please provide a place of interest '))
+        print('What is the budget? ')
+        buget=select_budget()
+        print('How many days? ')
+        days=select_budget()
+        export_dict={i:{'destination':place,'hotel':hotel,'Points of interest':lista_interest,'budget':buget,'schedule':days}}
+    return export_dict
+
+def buget_total(aux_dix={1:{'destination':'','hotel':'','Points of interest':[''],'budget':0,'schedule':0}}):
+    s=0
+    for i in aux_dix.keys():
+        s+=aux_dix[i]['budget']
+    return s
+buget_total()
