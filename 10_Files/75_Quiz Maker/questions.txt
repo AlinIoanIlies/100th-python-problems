@@ -1,0 +1,37 @@
+1
+Question:
+What is the capital city of USA?
+Options:
+Washington DC
+Detroit
+New york
+Answer:
+Washington DC
+2
+Question:
+What is the biggest country in terms of land?
+Options:
+USA
+China
+Canada
+Russia
+Answer:
+Russia
+3
+Question:
+What is the biggest country in terms of population?
+Options:
+USA
+China
+Canada
+Russia
+Answer:
+China
+4
+Question:
+What is the biggest mountain?
+Options:
+kilimanjaro
+Everest
+Answer:
+Everest

@@ -1,0 +1,10 @@
+import zipfile
+def comprensare(fisier=['text.txt'],name='comp_file.zip'):
+    comp_file=zipfile.ZipFile(name,'w')
+    for elem in fisier:
+        comp_file.write(elem,compress_type=zipfile.ZIP_DEFLATED)
+    comp_file.close()
+def decomprensare(name='comp_file.zip'):
+    zip_obj=zipfile.ZipFile(name,'r')
+    zip_obj.extractall('extracted content')
+

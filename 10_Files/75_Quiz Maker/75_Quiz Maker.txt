@@ -1,0 +1,82 @@
+def select_number(n_min=0,n_max=2):
+    list_choice=[]
+    for i in range(n_min,n_max+1):
+        list_choice.append(str(i))
+    choice=''
+    while choice not in list_choice:
+        choice=input(f'please provide a number between {n_min} and {n_max} ')
+    return int(choice)
+
+import random
+x=random.sample(population=[1,2,3,4],k=2)
+x.sort()
+
+import os
+base=os.getcwd()
+def creare_chestionar(name='questions.txt'):
+    extensie=name.split('.')[-1]
+    name_file=name[0:len(name)-len(extensie)-1]
+    with open(base+"\\"+name,'r') as f:
+        text=f.read()
+    out_list=text.split('\n')
+    out_dict={}
+    l_index=[]
+    i=0
+    while i<len(out_list):
+        try:
+            index=int(out_list[i])
+            l_index.append(index)
+        except:
+            pass
+        i+=1
+    content={}
+    for i in range(len(l_index)-1):
+        content[l_index[i]]=out_list[out_list.index(str(l_index[i]))+1:out_list.index(str(l_index[i+1]))]
+    content[l_index[-1]]=out_list[out_list.index(str(l_index[-1]))+1:]
+    
+    for i in content.keys():
+        l_aux=content[i]
+        s={}
+        index_que=l_aux.index('Question:')
+        index_opt=l_aux.index('Options:')
+        index_ans=l_aux.index('Answer:')
+        s['Question:']=l_aux[index_que+1:index_opt][0]
+        s['Options:']=l_aux[index_opt+1:index_ans]
+        s['Answer:']=l_aux[index_ans+1:][0]
+        out_dict[i]=s
+    
+    print('please choose the number of questions ')
+    n=select_number(0,len(l_index))
+    selected=random.sample(population=l_index,k=n)
+    selected.sort()
+    intrebari_export={}
+    rezultate={}
+    for i in selected:
+        intrebari_export[i]={'Question:':out_dict[i]['Question:'],'Options:':out_dict[i]['Options:']}
+        rezultate[i]={'Question:':out_dict[i]['Question:'],'Answer:':out_dict[i]['Answer:']}
+    export_intrebari=''
+    rez_intrebari=''
+    l=1
+    for i in intrebari_export.keys():
+        export_intrebari+='Question '+str(l)+': '+intrebari_export[i]['Question:']+'\n'
+        optiuni=''
+        k=ord('a')
+        for j in intrebari_export[i]['Options:']:
+            optiuni+=chr(k)+') '+j+'\t'
+            k+=1
+        export_intrebari+=optiuni+'\n'
+        loc=optiuni[optiuni.find(rezultate[i]['Answer:'])-3:optiuni.find(rezultate[i]['Answer:'])]
+        rez_intrebari+='Question '+str(l)+': '+intrebari_export[i]['Question:']+'\n'+'Aswer:\t'+loc+rezultate[i]['Answer:']+'\n'
+        l+=1
+    with open(base+"\\test_"+name,'w') as f:
+        f.write(export_intrebari)
+    with open(base+"\\Answer_test_"+name,'w') as f:
+        f.write(rez_intrebari)    
+    return out_dict
+print(creare_chestionar())
+
+
+
+
+
+

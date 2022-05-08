@@ -1,0 +1,13 @@
+import pdfkit
+aux1='alin.2.txt'
+aux1[0:-len(aux1.split('.')[-1])-1]
+import os
+base=os.getcwd()
+
+def export_fisier(fisier):
+    x=fisier.split('.')[-1]
+    y=fisier[0:len(x)-1]+'_out.pdf'
+    with open(base+"\\"+fisier,'r') as f:
+        text=f.read()
+    pdfkit.from_string(text, 'out.pdf')
+    print(text)
