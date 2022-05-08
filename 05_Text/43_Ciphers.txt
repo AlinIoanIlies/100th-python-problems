@@ -1,0 +1,162 @@
+import string
+alphabet=string.ascii_lowercase
+alphabet.upper()
+
+def criptare_ceasar(text,n=3):
+    criptare={}
+    alphabet=string.ascii_lowercase
+    for j in range(n):
+        criptare[alphabet[j]]=alphabet[len(alphabet)-n+j]
+    for i in range(len(alphabet)-n):
+        criptare[alphabet[i+n]]=alphabet[i]
+    result=''
+    for elem in text:
+        if elem not in alphabet:
+            result+=elem
+        elif elem in alphabet.lower():
+            result+=criptare[elem]
+        elif elem in alphabet.upper():
+            result+=criptare[elem.lower()].upper()
+    return result
+
+def decriptare_ceasar(text,n=3):
+    criptare={}
+    alphabet=string.ascii_lowercase
+    mare=alphabet.upper()
+    for j in range(n):
+        criptare[alphabet[j]]=alphabet[len(alphabet)-n+j]
+    for i in range(len(alphabet)-n):
+        criptare[alphabet[i+n]]=alphabet[i]
+    result=''
+    decriptare={}
+    for i in criptare:
+        decriptare[criptare[i]]=i
+    for elem in text:
+        if elem not in alphabet:
+            result+=elem
+        elif elem in alphabet.lower():
+            result+=decriptare[elem]
+        elif elem in mare:
+            elem=elem.lower()
+            result+=decriptare[elem]    
+    return result
+
+def ceasar(n=3):
+    criptare={}
+    alphabet=string.ascii_lowercase
+    mare=alphabet.upper()
+    for j in range(n):
+        criptare[alphabet[j]]=alphabet[len(alphabet)-n+j]
+    for i in range(len(alphabet)-n):
+        criptare[alphabet[i+n]]=alphabet[i]
+    return criptare
+
+def vigenere_table():
+    criptare={}
+    alphabet=string.ascii_lowercase
+    for i in range(len(alphabet)):
+        criptare[alphabet[i]]=ceasar(i)
+    return criptare
+
+def criptare_vigenere(test,cheie):
+    alphabet=string.ascii_lowercase
+    result=''
+    cheie=cheie.lower()
+    criptare=vigenere_table()
+    if len(test)<len(cheie):
+        cheie=cheie[0:len(test)]
+    elif len(test)>len(cheie):
+        c=cheie
+        k=0
+        while len(test)>len(cheie):
+            cheie+=c[k]
+            if k>=len(c)-1:
+                k=0
+            else:
+                k+=1
+    for i in range(len(test)):
+        if test[i] not in alphabet:
+            result+=test[i]
+        else:
+            result+=criptare[cheie[i]][test[i]]
+    return result
+
+def decriptare_vigenere(test,cheie):
+    alphabet=string.ascii_lowercase
+    result=''
+    cheie=cheie.lower()
+    criptare=vigenere_table()
+    if len(test)<len(cheie):
+        cheie=cheie[0:len(test)]
+    elif len(test)>len(cheie):
+        c=cheie
+        k=0
+        while len(test)>len(cheie):
+            cheie+=c[k]
+            if k>=len(c)-1:
+                k=0
+            else:
+                k+=1
+    for i in range(len(test)):
+        if test[i] not in alphabet:
+            result+=test[i]
+        else:
+            result+=criptare[cheie[i]][test[i]]
+    return result
+
+
+def codare_litere():
+    alphabet=string.ascii_lowercase
+    s={}
+    for i in range(len(alphabet)):
+        s[alphabet[i]]=i
+    return s
+
+def criptare_vernam(test,cheie):
+    alphabet=string.ascii_lowercase
+    cheie=cheie.lower()
+    if len(test)<len(cheie):
+        cheie=cheie[0:len(test)]
+    elif len(test)>len(cheie):
+        c=cheie
+        k=0
+        while len(test)>len(cheie):
+            cheie+=c[k]
+            if k>=len(c)-1:
+                k=0
+            else:
+                k+=1
+    s=codare_litere()
+    result=''
+    for i in range(len(test)):
+        v_t=s[test[i]]
+        v_c=s[cheie[i]]
+        fin=(v_t+v_c)%26
+        result+=alphabet[fin]
+    return result
+
+
+def decriptare_vernam(test,cheie):
+    alphabet=string.ascii_lowercase
+    cheie=cheie.lower()
+    if len(test)<len(cheie):
+        cheie=cheie[0:len(test)]
+    elif len(test)>len(cheie):
+        c=cheie
+        k=0
+        while len(test)>len(cheie):
+            cheie+=c[k]
+            if k>=len(c)-1:
+                k=0
+            else:
+                k+=1
+    s=codare_litere()
+    result=''
+    for i in range(len(test)):
+        v_t=s[test[i]]
+        v_c=s[cheie[i]]
+        fin=v_t-v_c
+        if fin<0:
+            fin+=26
+        result+=alphabet[fin]
+    return result

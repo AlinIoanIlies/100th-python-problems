@@ -1,0 +1,44 @@
+import datetime
+timestamp=datetime.datetime.now()
+
+def postare():
+    name=input('What is your name? ')
+    subject=input('what is the title of the post? ')
+    timestamp=datetime.datetime.now()
+    comment=input('what is your comment? ')
+    return [name,subject,comment,timestamp]
+
+def comentariu():
+    name=input('What is your name? ')
+    timestamp=datetime.datetime.now()
+    comment=input('what is your comment? ')
+    return [name,comment,timestamp]
+
+postari={}
+n=0
+index=[]
+
+while True:
+    p=''
+    while p not in ['y','n']:
+        p=input('create a new post? y/n ').lower()[0]
+        n+=1
+    if p=='y':
+        postari[n]=[postare(),]
+        index.append(str(n))
+    print(postari)
+    c=''
+    while c not in ['y','n']:
+        c=input('create a new comment? y/n ').lower()[0]
+    if c=='y':
+        c_i=''
+        print(index)
+        while c_i not in index:
+            c_i=input('for what post? select an index ')
+        c_i=int(c_i)
+        postari[c_i].append(comentariu())
+    com=''
+    while com not in ['y','n']:
+        com=input('Do you want to continue? y/n ').lower()[0]
+    if com=='n':
+        break

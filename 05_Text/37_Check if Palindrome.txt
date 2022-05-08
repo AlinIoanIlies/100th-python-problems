@@ -1,0 +1,6 @@
+def palindrome(text):
+    orig=text.lower()
+    de_eliminat=[' ',',','.','!','?',':',';','"',"'"]
+    for i in de_eliminat:
+        orig=orig.replace(i,'')
+    return orig==orig[::-1]

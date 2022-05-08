@@ -1,0 +1,8 @@
+def pig_latin(text):
+    l_t=text.lower().split()
+    final=''
+    for elem in l_t:
+        w=elem[1:]+elem[0]+'ay'
+        final+=w+' '
+    final=final[1:-1]
+    return final

@@ -1,0 +1,5 @@
+import re
+def caut(text,search):
+    gasit=re.findall(r'{}'.format(search),text)
+    return gasit
+

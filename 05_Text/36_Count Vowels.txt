@@ -1,0 +1,27 @@
+def count_vowels(text):
+    orig=text.lower()
+    n_a=0
+    n_e=0
+    n_i=0
+    n_o=0
+    n_u=0
+    n_y=0
+    for i in orig:
+        if i=='a':
+            n_a+=1
+        elif i=='e':
+            n_e+=1
+        elif i=='i':
+            n_i+=1
+        elif i=='o':
+            n_o+=1            
+        elif i=='u':
+            n_u+=1       
+        elif i=='y':
+            n_y+=1
+    print(f'Vowel a appears: {n_a} times\n')
+    print(f'Vowel e appears: {n_e} times\n')
+    print(f'Vowel i appears: {n_i} times\n')
+    print(f'Vowel o appears: {n_o} times\n')
+    print(f'Vowel u appears: {n_u} times\n')
+    print(f'Vowel y appears: {n_y} times\n')

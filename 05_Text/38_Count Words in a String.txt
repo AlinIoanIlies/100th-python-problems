@@ -1,0 +1,29 @@
+import os
+base=os.getcwd()+"\\file_locations"
+with open(base+"\\"+'input.txt','r') as f:
+    text=f.read()
+def count_words(t):
+    orig=t.lower()
+    de_eliminat=[',','.','!','?',':',';','"',"'"]
+    for i in de_eliminat:
+        orig=orig.replace(i,'')
+    orig=orig.replace('\t',' ')
+    orig=orig.replace('\n',' ')
+    lista_cuv=orig.split()
+    set_cuv=set(lista_cuv)
+    over={}
+    for i in set_cuv:
+        n=0
+        for j in lista_cuv:
+            if i==j:
+                n+=1
+        over[i]=n
+    return over
+count_words(text)
+
+with open(base+"\\"+'output.txt','w') as f:
+    with open(base+"\\"+'input.txt','r') as g:
+        text=g.read()
+    overview=count_words(text)
+    for i in overview:
+        f.write(i+' appears '+str(overview[i])+' times\n')

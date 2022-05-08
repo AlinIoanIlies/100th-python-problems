@@ -1,0 +1,15 @@
+search on google
+
+python3 -m pip install googlesearch-python
+
+def stock():
+    result=input('What company do you want to search? ')
+    return result
+
+from googlesearch import search
+
+termen=stock()+' stock value'
+view = search(termen, num_results=10,lang="en")
+
+for j in view:
+    print(j)

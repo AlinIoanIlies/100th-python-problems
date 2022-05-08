@@ -1,0 +1,17 @@
+import random
+
+xmas = ("oranges", "wine", "electronics", "books", "clothes")
+birthday=("puzzle","books","champagne","money")
+anniversary=("flowers","money","wine")
+
+def cadou():
+    choice=''
+    while choice not in ['xmas','birthday','anniversary']:
+        choice=input('please choose the event ').lower()
+    if choice=='xmas':
+        rezultat = random.choice(xmas)
+    elif choice=='birthday':
+        rezultat = random.choice(birthday)
+    elif choice=='anniversary':
+        rezultat = random.choice(anniversary)
+    return ("you should bring: "+rezultat)
